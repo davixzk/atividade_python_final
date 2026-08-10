@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Entrar — FlowTask{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-card">
+    <span class="eyebrow">BEM-VINDO DE VOLTA</span>
+    <h1>Entrar no FlowTask</h1>
+    <p class="muted">Acesse seu painel para continuar.</p>
+    <form method="POST" class="form" data-validate>
+      <label>E-mail<input type="email" name="email" placeholder="voce@email.com" required></label>
+      <label>Senha<input type="password" name="senha" placeholder="••••••••" required minlength="4"></label>
+      <button class="btn btn-primary full" type="submit">Entrar</button>
+    </form>
+    <p class="switch">Ainda não tem conta? <a href="/cadastro">Criar uma conta</a></p>
+  </div>
+</section>
+{% endblock %}

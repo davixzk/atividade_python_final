@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}FlowTask — Organize seu dia{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">ORGANIZAÇÃO SEM COMPLICAÇÃO</span>
+    <h1>Transforme tarefas em <span>progresso.</span></h1>
+    <p>Um painel leve para organizar suas atividades, acompanhar prioridades e manter tudo no lugar.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/cadastro">Começar agora</a>
+      <a class="btn btn-secondary" href="/login">Já tenho conta</a>
+    </div>
+  </div>
+  <div class="preview-card">
+    <div class="preview-head"><strong>Minha semana</strong><span class="status-dot">● online</span></div>
+    <div class="progress"><span></span></div>
+    <div class="task-mini done"><span>✓</span><div><b>Planejar projeto</b><small>Concluída</small></div></div>
+    <div class="task-mini"><span>○</span><div><b>Revisar atividades</b><small>Hoje</small></div></div>
+    <div class="task-mini"><span>○</span><div><b>Enviar relatório</b><small>Amanhã</small></div></div>
+  </div>
+</section>
+<section class="features">
+  <article><div class="feature-icon">✓</div><h3>Clareza</h3><p>Veja o que precisa ser feito sem excesso de informação.</p></article>
+  <article><div class="feature-icon">↗</div><h3>Foco</h3><p>Priorize o que realmente importa e avance todos os dias.</p></article>
+  <article><div class="feature-icon">▦</div><h3>Controle</h3><p>Acompanhe suas tarefas em um painel simples e responsivo.</p></article>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Criar conta — FlowTask{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-card">
+    <span class="eyebrow">COMECE AGORA</span>
+    <h1>Crie sua conta</h1>
+    <p class="muted">Organize suas tarefas em poucos passos.</p>
+    <form method="POST" class="form" data-validate>
+      <label>Nome<input type="text" name="nome" placeholder="Seu nome" required></label>
+      <label>E-mail<input type="email" name="email" placeholder="voce@email.com" required></label>
+      <label>Senha<input type="password" name="senha" placeholder="Crie uma senha" required minlength="4"></label>
+      <button class="btn btn-primary full" type="submit">Criar conta</button>
+    </form>
+    <p class="switch">Já possui uma conta? <a href="/login">Entrar</a></p>
+  </div>
+</section>
+{% endblock %}

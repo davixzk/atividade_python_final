@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Painel — FlowTask{% endblock %}
+{% block content %}
+<div class="dashboard">
+  <aside class="side">
+    <div class="side-brand"><span class="brand-mark">F</span><b>FlowTask</b></div>
+    <a class="side-link active" href="/dashboard">▦ <span>Painel</span></a>
+    <a class="side-link" href="#tarefas">✓ <span>Tarefas</span></a>
+    <a class="side-link" href="#prioridades">★ <span>Prioridades</span></a>
+    <a class="side-link" href="#config">⚙ <span>Configurações</span></a>
+  </aside>
+  <section class="dash-content">
+    <div class="dash-head">
+      <div><span class="eyebrow">SEU ESPAÇO</span><h1>Olá! 👋</h1><p class="muted">Aqui está um resumo das suas atividades.</p></div>
+      <button class="btn btn-primary" id="newTask">+ Nova tarefa</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Total</span><strong id="totalTasks">3</strong><small>tarefas</small></div>
+      <div class="stat"><span>Concluídas</span><strong id="doneTasks">1</strong><small>finalizadas</small></div>
+      <div class="stat"><span>Pendentes</span><strong id="pendingTasks">2</strong><small>em aberto</small></div>
+    </div>
+    <section class="task-panel" id="tarefas">
+      <div class="panel-head"><h2>Minhas tarefas</h2><select id="filterTasks"><option value="all">Todas</option><option value="pending">Pendentes</option><option value="done">Concluídas</option></select></div>
+      <div id="taskList">
+        <div class="task-row done-task" data-state="done"><button class="check checked">✓</button><div><b>Planejar projeto</b><small>Concluída</small></div><button class="delete" aria-label="Excluir">×</button></div>
+        <div class="task-row" data-state="pending"><button class="check">✓</button><div><b>Revisar atividades</b><small>Hoje</small></div><button class="delete" aria-label="Excluir">×</button></div>
+        <div class="task-row" data-state="pending"><button class="check">✓</button><div><b>Enviar relatório</b><small>Amanhã</small></div><button class="delete" aria-label="Excluir">×</button></div>
+      </div>
+      <div class="empty" id="emptyState" hidden>Nenhuma tarefa encontrada.</div>
+    </section>
+  </section>
+</div>
+<div class="modal" id="taskModal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="closeModal">×</button>
+    <h2>Nova tarefa</h2>
+    <form id="taskForm" class="form">
+      <label>Nome da tarefa<input id="taskName" required placeholder="Ex.: Estudar JavaScript"></label>
+      <label>Quando?<select id="taskDate"><option>Hoje</option><option>Amanhã</option><option>Esta semana</option></select></label>
+      <button class="btn btn-primary full">Adicionar tarefa</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

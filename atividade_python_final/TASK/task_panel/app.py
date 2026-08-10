@@ -7,7 +7,6 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'chave_secreta_flask_2024'
 
-# ─── Banco de Dados ───────────────────────────────────────────────────────────
 
 def get_db():
     conn = sqlite3.connect('database.db')
@@ -37,7 +36,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-# ─── Decorador de Autenticação ────────────────────────────────────────────────
 
 def login_required(f):
     @wraps(f)
@@ -48,10 +46,6 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
-# ─── Dica do Dia (sistema interno, 100% em português) ────────────────────────
-# Lista de frases motivacionais fixas. Uma frase diferente é escolhida
-# automaticamente a cada dia, mas permanece a mesma durante todo o dia,
-# mesmo que a página seja recarregada várias vezes.
 
 FRASES_DO_DIA = [
     "A jornada de mil quilômetros começa com um único passo.",
@@ -86,7 +80,6 @@ def obter_dica_do_dia():
     except Exception:
         return DICA_PADRAO
 
-# ─── Rotas de Autenticação ────────────────────────────────────────────────────
 
 @app.route('/')
 def index():
@@ -133,7 +126,6 @@ def logout():
     flash('Você saiu com sucesso.', 'info')
     return redirect(url_for('login'))
 
-# ─── Dashboard ────────────────────────────────────────────────────────────────
 
 @app.route('/dashboard')
 @login_required
@@ -160,7 +152,6 @@ def dashboard():
                            em_andamento=em_andamento,
                            concluidas=concluidas)
 
-# ─── Atualização de status via AJAX (sem recarregar a página) ────────────────
 
 @app.route('/tarefas/status/<int:id>', methods=['POST'])
 @login_required
@@ -191,7 +182,6 @@ def atualizar_status(id):
 
     return jsonify({'sucesso': True, 'status': novo_status, 'mensagem': 'Status atualizado!'})
 
-# ─── CRUD de Tarefas ──────────────────────────────────────────────────────────
 
 @app.route('/tarefas/nova', methods=['GET', 'POST'])
 @login_required
@@ -251,7 +241,6 @@ def deletar_tarefa(id):
     return redirect(url_for('dashboard'))
 
 
-# ─── API REST — Tarefas em JSON (Desafio Avançado) ───────────────────────────
 
 @app.route('/api/tarefas', methods=['GET'])
 @login_required
@@ -353,7 +342,6 @@ def api_deletar_tarefa(id):
     conn.close()
     return jsonify({'sucesso': True, 'mensagem': 'Tarefa removida com sucesso.'})
 
-# ─── API REST — Progresso (item 10, Chart.js) ─────────────────────────────────
 
 @app.route('/api/progresso', methods=['GET'])
 @login_required
@@ -374,7 +362,6 @@ def api_progresso():
             dados[row['status']] = row['total']
     return jsonify(dados)
 
-# ─── Página de Progresso — Dashboard Visual (item 10) ────────────────────────
 
 @app.route('/progresso')
 @login_required
@@ -400,13 +387,9 @@ def progresso():
                            concluidas=concluidas,
                            pct=pct)
 
-# ─── Inicialização ────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
 
-# ─── Segurança (item 7) ───────────────────────────────────────────────────────
-# SECRET_KEY já configurada. DEBUG=False em produção via variável de ambiente.
-# Uso: FLASK_DEBUG=0 python app.py
 
